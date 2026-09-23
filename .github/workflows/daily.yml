@@ -1,0 +1,25 @@
+name: Daily Crypto Update
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 每天UTC 0 点， 北京时间 8 点
+  workflow_dispatch:    # 支持手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests pandas gspread google-auth
+
+      - name: Run script
+        env:
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: python main.py
