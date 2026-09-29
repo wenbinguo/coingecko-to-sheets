@@ -15,7 +15,12 @@ def fetch_market_data() -> pd.DataFrame:
         'page': '1',
         'price_change_percentage': '24h'
     }
-    resp = requests.get(url, params=params, timeout=10)
+
+    headers = {
+        'User-Agent': 'CryptoMarketDataBot/1.0',
+        'x-cg-demo-api-key': os.environ.get('COINGECKO_API_KEY', '')
+    }
+    resp = requests.get(url, params=params, headers=headers, timeout=10)
     resp.raise_for_status()
     data = resp.json()
     df = pd.DataFrame(data)[['market_cap_rank', 'name', 'symbol', 'current_price',
