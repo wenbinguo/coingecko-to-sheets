@@ -54,3 +54,9 @@ a Google Sheet with 50 rows of crypto market data, updated daily.
 ## Notes
 - Uses CoinGecko free public API, subject to rate limits
 - No trading, wallet, or private key functionality
+
+## Screenshots
+
+![Google Sheets Update](screenshots/google-sheets1.png)
+![Google Sheets Update](screenshots/google-sheets2.png)
+![Google Sheets Update](screenshots/google-sheets3.png)
