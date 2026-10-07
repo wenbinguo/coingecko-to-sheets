@@ -26,6 +26,9 @@ def fetch_market_data() -> pd.DataFrame:
     df = pd.DataFrame(data)[['market_cap_rank', 'name', 'symbol', 'current_price',
                              'price_change_percentage_24h', 'market_cap', 'total_volume'
                              ]]
+
+    df["price_change_percentage_24h"] = df["price_change_percentage_24h"].fillna(0)
+    df = df.where(pd.notnull(df), "")
     return df
 
 
